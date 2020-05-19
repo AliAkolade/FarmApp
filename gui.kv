@@ -1,0 +1,71 @@
+<MyLabel@Label>:
+    size_hint_x: 0.4
+<MyInput@TextInput>:
+<MyBox@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint: (1, None)
+    height: 40
+
+WindowManager:
+    SplashWindow:
+        name: 'Splash'
+    MainWindow:
+        name: 'Predict'
+
+<SplashWindow>:
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        BoxLayout:
+            orientation: 'vertical'
+            Image:
+                id: pic
+                source: 'Resources\\Bowen.png'
+            Label:
+                text: 'Farm Assistant'
+
+<MainWindow>:
+    name: "Main Screen"
+    AnchorLayout:
+        anchor_x: 'center'
+        anchor_y: 'center'
+        padding: 10, 5
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            size_hint_x: 0.8
+            Label:
+                text: 'Please Enter the Farm Details'
+                size_hint_y: 0.1
+            ScrollView:
+                BoxLayout:
+                    orientation: 'vertical'
+                    height: self.minimum_height
+                    size_hint_y: None
+                    spacing: 10
+                    MyBox:
+                        MyLabel:
+                            text: 'Nitrogen (Kg/ha)'
+                        MyInput:
+                            id: input_n
+                            hint_text:'Enter the amount of Nitrogen in Kilograms per hectare'
+                            text: '60'
+                    MyBox:
+                        MyLabel:
+                            text: 'Phosphorous (Kg/ha)'
+                        MyInput:
+                            id: input_p
+                            hint_text:'Enter the amount of Phosphorous in Kilograms per hectare'
+                            text: '27'
+                    MyBox:
+                        MyLabel:
+                            text: 'Potassium (Kg/ha)'
+                        MyInput:
+                            id: input_k
+                            hint_text:'Enter the amount of Potassium in Kilograms per hectare'
+                            text: '50'
+            Button:
+                size_hint: 0.3, 0.05
+                pos_hint: {"x": 0.355}
+                text: 'Predict'
+                on_release: root.predict()
