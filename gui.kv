@@ -18,11 +18,17 @@ WindowManager:
         anchor_y: 'center'
         BoxLayout:
             orientation: 'vertical'
+            padding: 100
             Image:
                 id: pic
                 source: 'Resources\\Bowen.png'
             Label:
                 text: 'Farm Assistant'
+            Button:
+                text: 'Predict'
+                size_hint: 0.3,0.3
+                pos_hint: {'center_x':.5, 'center_y': .5}
+                on_release: root.change_screen()
 
 <MainWindow>:
     name: "Main Screen"

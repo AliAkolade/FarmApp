@@ -13,15 +13,8 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 
 
 class SplashWindow(Screen):
-    def on_enter(self):
-        Clock.schedule_once(self.get_screen)
 
-    def get_screen(self, a):
-        threading.Thread(target=self.change_screen).start()
-
-    @mainthread
     def change_screen(self):
-        time.sleep(0.5)
         self.manager.current = "Predict"
 
     pass
@@ -156,10 +149,20 @@ class MainWindow(Screen):
 
     def showResult(self):
         self.answers = self.answers[0].split(',')
-        a1 = "Nitrogen = " + str(self.answers[0].capitalize())
+        a1 = "Nitrogen = " + str(self.answers[0].strip().capitalize())
+        print(a1)
         a2 = "Phosphorous = " + str(self.answers[1].strip().capitalize())
+        print(a2)
         a3 = "Potassium = " + str(self.answers[2].strip().capitalize())
-        ans = a1 + "\n\n" + a2 + "\n\n" + a3
+        print(a3)
+        if a1 == 'Nitrogen = Lots-of-nitrogen-fertilizer' or a1 == 'Nitrogen = Small-amount-of-nitrogen-fertilizer':
+            suggest1 = "Ammonium fertilizer should be added"
+        if a2 == 'Phosphorous = Lots-of-phosphorus-fertilizer' or a2 == 'Phosphorous = Small-amount-of-phosphorus-fertilizer':
+            suggest2 = "Phosphate fertilizer should be added"
+        if a3 == 'Potassium = Lots-of-potassium-fertilizer' or a3 == 'Potassium = Small-amount-of-potassium-fertilizer':
+            suggest3 = "Potassh fertilizer should be added"
+        ans = suggest1 + "\n\n" + suggest2 + "\n\n" + suggest3
+        #ans = a1 + "\n\n" + a2 + "\n\n" + a3
         ans = ans.replace('-', ' ')
         result = Label(text=ans)
         popupWindow = Popup(title="What You Need?", title_align='center', content=result, size_hint=(0.5, 0.5))
