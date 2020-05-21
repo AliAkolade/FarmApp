@@ -150,11 +150,8 @@ class MainWindow(Screen):
     def showResult(self):
         self.answers = self.answers[0].split(',')
         a1 = "Nitrogen = " + str(self.answers[0].strip().capitalize())
-        print(a1)
         a2 = "Phosphorous = " + str(self.answers[1].strip().capitalize())
-        print(a2)
         a3 = "Potassium = " + str(self.answers[2].strip().capitalize())
-        print(a3)
         if a1 == 'Nitrogen = Lots-of-nitrogen-fertilizer' or a1 == 'Nitrogen = Small-amount-of-nitrogen-fertilizer':
             suggest1 = "Ammonium fertilizer should be added"
         if a2 == 'Phosphorous = Lots-of-phosphorus-fertilizer' or a2 == 'Phosphorous = Small-amount-of-phosphorus-fertilizer':
